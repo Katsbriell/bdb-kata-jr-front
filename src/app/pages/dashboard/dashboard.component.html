@@ -1,0 +1,62 @@
+<div class="container" *ngIf="!onNewEvent">
+  <div class="panel">
+    <b class="title">Gestión de eventos</b>
+    <button class="addEventBtn" (click)="addEvent()">Añadir <i class="fas fa-plus"></i></button>
+  </div>
+
+  <div class="empty-list" *ngIf="!events">No tienes eventos pendientes.</div>
+  <div class="event-list" *ngIf="!!events">
+    <div class="events" *ngFor="let event of events">
+      <div class="event-data">
+        <b>
+          <p style="font-size: large;">{{ event.eventName }}</p>
+        </b>
+        <p><a>Horario: </a>{{ event.eventDate }}</p>
+        <p><a>Descripción: </a>{{ event.eventDesc }}</p>
+        <p><a>Ubicación:</a>{{ event.eventLocation }}</p>
+      </div>
+      <div class="btns">
+        <button (click)="updateEvent(event)"><i class="fas fa-pencil-alt"></i> Editar</button>
+        <button  (click)="openModal(event)"><i class="fas fa-trash"></i> Eliminar</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="new-event" *ngIf="onNewEvent">
+  <form [formGroup]="eventsForm" (ngSubmit)="onSubmit()">
+    <label for="input1">Título del evento:</label>
+    <input id="input1" formControlName="input1" required [value]="newEvent.eventName" />
+    <br />
+
+    <label for="input2">Descripción:</label>
+    <input id="input2" formControlName="input2" required />
+    <br />
+
+    <label for="input3">Ubicación:</label>
+    <input id="input3" formControlName="input3" required />
+    <br />
+
+    <label for="datetime">Fecha y Hora:</label>
+    <input id="datetime" type="datetime-local" formControlName="datetime" required />
+    <br />
+
+    <div class="form-btns">
+      <input type="submit" value="Guardar" [disabled]="eventsForm.invalid" />
+      <input type="button" value="Cancelar" (click)="onCancel()" />
+    </div>
+  </form>
+</div>
+
+<!-- Modal -->
+<div class="modal" [class.show]="onOpenModal">
+  <div class="modal-content">
+    <h2>¿Desea eliminar el evento?</h2>
+    <div class="modal-btns">
+      <button (click)="onConfirm()">Eliminar</button>
+      <button (click)="closeModal()">Cancelar</button>
+    </div>
+  </div>
+</div>
+
+<!-- Fondo del modal -->
+<div class="overlay" [class.show]="onOpenModal"></div>

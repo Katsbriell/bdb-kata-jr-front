@@ -1,0 +1,172 @@
+.container {
+    width: fill;
+    margin: auto;
+    margin-top: 70px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: medium;
+    border: 1px gray solid;
+    border-radius: 8px;
+    overflow: scroll;
+    min-height: 400px;
+    max-height: 600px;
+    max-width: 600px;
+    height: fill;
+
+    .panel {
+        position: fixed;
+        top: 0px;
+        padding-top: 20px;
+        justify-content: center;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        background-color: white;
+        width: 90%;
+        max-width: 600px;
+
+        .title {
+            font-size: large;
+            margin: 10px;
+            align-self: first baseline;
+            margin-right: 20px;
+        }
+
+        button {
+            font-size: medium;
+            width: 100px;
+            align-self: center;
+            justify-self: right;
+        }
+    }
+
+    .event-list {
+        .events {
+            display: flex;
+            flex-direction: row;
+            width: fill;
+            height: 150px;
+            border-bottom: 1px gray solid;
+            margin: 2px;
+            padding: 2px;
+            
+            p{
+                font-style: italic ;
+                font-size: small;
+                a{
+                    font-style: normal ;
+                    font-size: medium;
+                }
+            }
+
+            .event-data {
+
+                width: 80%;
+                overflow: hidden;
+                padding: 10px;
+
+                p {
+                    margin: 0;
+                    padding: 5px;
+                }
+            }
+
+            .btns {
+                height: fit-content;
+                width: auto;
+                margin: auto;
+                padding: 15px;
+
+                button {
+                    width: fill;
+                    font-size: medium;
+                    margin-bottom: 10px;
+                    display: flex;
+                    flex-direction: row;
+                    gap: 5px;
+                    align-items: center;
+                }
+                i{
+                    font-size: small;
+                }
+            }
+        }
+    }
+
+
+}
+
+.new-event {
+    display: grid;
+    width: fit-content;
+    margin: auto;
+    margin-top: 100px;
+    padding: 20px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: medium;
+    border: 1px gray solid;
+    border-radius: 8px;
+
+    input {
+        width: fill;
+    }
+
+    .form-btns {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+}
+
+.modal {
+    display: none;
+    /* Oculto por defecto */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    z-index: 1001;
+    gap: 10px;
+
+    .modal-btns {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+}
+
+.modal.show {
+    display: block;
+}
+
+/* Fondo oscuro detrás del modal */
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+}
+
+/* Mostrar overlay cuando el modal está abierto */
+.overlay.show {
+    display: block;
+}
+
+button {
+    background-color: rgb(236, 232, 232);
+    border: none;
+    border-radius: 10px;
+    width: 100px;
+    height: 25px;
+}
+
+button:hover {
+    background-color: rgb(189, 186, 186);
+}
