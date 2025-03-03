@@ -41,31 +41,8 @@ export class DashboardComponent implements OnInit {
   }
 
   async getEvents() {
-    console.log('Botón!');
-    const body1 = {
-      eventName: 'Conferencia',
-      eventDate: '2025-01-01',
-      eventDesc: 'Ejemplo desc',
-      eventLocation: 'Bogota',
-    };
-
-    const body2 = {
-      eventName: 'Conferencia 2',
-      eventDate: '2025-02-02',
-      eventDesc: 'Ejemplo desc 2',
-      eventLocation: 'Bogota',
-    };
-
     this.events = await this.eventsService.getAllEvents();
-    console.log('getall', this.events);
-
-    // this.events = await this.eventsService.createEvent(body1);
-    // console.log('create',this.events);
-
-    // this.events = await this.eventsService.updateEvent(10, body2);
-    // console.log('update', this.events);
-
-    //  await this.eventsService.deleteEvent(7);
+    console.log('All Events:', this.events);
   }
 
   async prepareData() {
@@ -121,14 +98,10 @@ export class DashboardComponent implements OnInit {
         eventDesc: this.eventsForm.value.input2,
         eventLocation: this.eventsForm.value.input3,
       };
-      console.log(this.newEvent);
-      console.log(this.onUpdateEvent);
 
       if (!this.onUpdateEvent) {
-        console.log('CREATE', this.eventsForm.value);
-        this.createEvent();
+        await this.createEvent();
       } else {
-        console.log('UPDATE', this.eventsForm.value);
         await this.eventsService.updateEvent(
           this.updatedEventId,
           this.newEvent
@@ -150,9 +123,9 @@ export class DashboardComponent implements OnInit {
     };
   }
 
-  openModal(event:any) {
+  openModal(event: any) {
     this.onOpenModal = true;
-    this.eventeToDelete = event;  
+    this.eventeToDelete = event;
   }
 
   closeModal() {
